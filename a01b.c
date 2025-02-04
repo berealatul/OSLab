@@ -3,6 +3,30 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <utmp.h>
+
+void printLoggedUsers()
+{
+    struct utmp *entry;
+
+    // open utmp file
+    setutent();
+
+    printf("Logged Users List Started:\n");
+
+    while ((entry = getutent()) != NULL)
+    {
+        if (entry->ut_type == USER_PROCESS)
+        {
+            printf("User: %s\n", entry->ut_user);
+        }
+    }
+
+    printf("Logged Users List Over\n");
+
+    // close utmp file
+    endutent();
+}
 
 int main()
 {
@@ -71,6 +95,7 @@ int main()
             printf("parentPID: %d\n", parentPID);
             printf("parentPPID: %d\n", parentPPID);
 
+            printLoggedUsers();
             exit(0);
         }
     }
