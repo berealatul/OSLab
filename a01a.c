@@ -33,6 +33,38 @@ int main()
 
         printf("childPID: %d\n", childPID);
         printf("childPPID: %d\n", childPPID);
+
+        int grandChild = fork();
+        if (grandChild < 0)
+        {
+            printf("Fork Failed!\n");
+            exit(1);
+        }
+        else if (grandChild == 0)
+        {
+            // new grandChild
+            int grandChildPID = getpid();
+            int grandChildPPID = getppid();
+
+            printf("grandChildPID: %d\n", grandChildPID);
+            printf("grandChildPPID: %d\n", grandChildPPID);
+
+            printf("rollNumber: CSM24006\n");
+
+            exit(0);
+        }
+        else
+        {
+            printf("Returning To Child After grandChild Processesed!\n");
+
+            int parentPID = getpid();
+            int parentPPID = getppid();
+
+            printf("parentPID: %d\n", parentPID);
+            printf("parentPPID: %d\n", parentPPID);
+
+            exit(0);
+        }
     }
     else
     {
