@@ -2,6 +2,12 @@
 
 int main(int argc, char *argv[])
 {
-    printf("Child Program Executed: %s\n", argv[0]);
+    printf("Child Process Executed: %s\n", argv[0]);
+    for (int i = 0; i < argc; i++)
+    {
+        printf("Argument %d: %s\n", i, argv[i]);
+    }
+
+    printf("Child Program Finished\n");
     return 0;
 }
