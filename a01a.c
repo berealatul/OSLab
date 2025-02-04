@@ -20,6 +20,9 @@ int main()
         < 0     : failed to create fork
     */
 
+    int childCount = 0;
+    int grandChildCount = 0;
+
     if (child < 0)
     {
         printf("Fork Failed\n");
@@ -56,6 +59,7 @@ int main()
         else
         {
             printf("Returning To Child After grandChild Processesed!\n");
+            grandChildCount++;
 
             int parentPID = getpid();
             int parentPPID = getppid();
@@ -69,12 +73,16 @@ int main()
     else
     {
         printf("Returning To Parent After Child Processesed!\n");
+        childCount++;
 
         int parentPID = getpid();
         int parentPPID = getppid();
 
         printf("parentPID: %d\n", parentPID);
         printf("parentPPID: %d\n", parentPPID);
+
+        printf("childCount: %d\n", childCount);
+        printf("grandChildCount: %d\n", grandChildCount);
     }
 
     return 0;
