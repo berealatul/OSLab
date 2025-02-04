@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 int main()
 {
@@ -12,7 +13,7 @@ int main()
     printf("currentPID: %d\n", currentPID);
     printf("currentPPID: %d\n", currentPPID);
 
-    int child = fork();
+    pid_t child = fork();
     /*
         fork returns three kinds of value
         > 0     : returning to parent process
@@ -37,7 +38,7 @@ int main()
         printf("childPID: %d\n", childPID);
         printf("childPPID: %d\n", childPPID);
 
-        int grandChild = fork();
+        pid_t grandChild = fork();
         if (grandChild < 0)
         {
             printf("Fork Failed!\n");
