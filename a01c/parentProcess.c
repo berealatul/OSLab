@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 int main()
 {
@@ -8,6 +11,28 @@ int main()
 
     printf("currPID: %d\n", currPID);
     printf("currPPID: %d\n", currPPID);
+
+    pid_t child = fork();
+
+    if (child < 0)
+    {
+        printf("Fork Failed\n");
+        exit(1);
+    }
+    else if (child == 0)
+    {
+        printf("Child Process Executing execv() function\n");
+
+        // last element must be NULL so that execv() knows where the argument list ends.
+        char *argv[] = {"./childProcess", "Hello", "World", NULL};
+        execv(argv[0], argv);
+    }
+    else
+    {
+        wait(NULL);
+        printf("Returned To Parent Process\n);
+                Checking Child Exit Status...\n");
+    }
 
     return 0;
 }
