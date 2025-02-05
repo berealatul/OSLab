@@ -31,8 +31,7 @@ int main()
     {
         int status;
         wait(&status);
-        printf("Returned To Parent Process\n);
-                Checking Child Exit Status...\n");
+        printf("Returned To Parent Process\nChecking Child Exit Status...\n");
 
         if (WIFEXITED(status))
             printf("Child process exited successfully\n");
