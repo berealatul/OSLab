@@ -5,7 +5,7 @@
 
 void signalHandler(int sig)
 {
-    printf("\nSignal Recieved: %d", sig);
+    printf("\nSignal Recieved: %d\n", sig);
     exit(0);
 }
 
