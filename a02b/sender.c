@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
 
 // container to store process action
@@ -27,6 +30,9 @@ int main()
 
     printf("PID: %d\n", pa.pid);
     printf("Signal: %d\n", pa.sig);
+
+    int flag = kill(pa.pid, pa.sig);
+    printf("Status: %d\n", flag);
 
     return 0;
 }
