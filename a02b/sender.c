@@ -1,38 +1,23 @@
 #include <stdio.h>
 #include <signal.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include <sys/types.h>
-
-// container to store process action
-struct processAction
-{
-    pid_t pid;
-    int sig;
-};
-
-struct processAction takeInput()
-{
-    struct processAction pa;
-
-    printf("Enter PID of process to kill: ");
-    scanf("%d", &pa.pid);
-
-    printf("Enter signal number to send: ");
-    scanf("%d", &pa.sig);
-
-    return pa;
-}
 
 int main()
 {
-    struct processAction pa = takeInput();
+    pid_t pid;
+    printf("Enter PID of process to kill: ");
+    scanf("%d", &pid);
 
-    printf("PID: %d\n", pa.pid);
-    printf("Signal: %d\n", pa.sig);
+    int sig;
+    printf("Enter Signal ID to send: ");
+    scanf("%d", &sig);
 
-    int flag = kill(pa.pid, pa.sig);
-    printf("Status: %d\n", flag);
+    printf("Sending signal to kill PID: %d\n", pid);
+    int flag = kill(pid, sig);
+    if (flag == 0)
+        printf("Sucessfully killed given process\n");
+    else
+        printf("Failed to kill given process\n");
 
     return 0;
 }
