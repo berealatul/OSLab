@@ -21,8 +21,14 @@ int main()
     printf("Running thread...\n");
     pthread_t thread;
     // NULL indicates default thread attributes
-    pthread_create(&thread, NULL, threadFunction, NULL);
-    printf("Parent Completed\n");
+    int status = pthread_create(&thread, NULL, threadFunction, NULL);
+    if (status != 0)
+    {
+        printf("Thread unsucessfull\n");
+        return 1;
+    }
+
+    printf("Main Program: thread created sucessfully");
 
     return 0;
 }
