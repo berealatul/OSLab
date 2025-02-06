@@ -11,12 +11,16 @@ Use pthread_exit() in your program (if possible) for terminating the thread.
 void *threadFunction()
 {
     printf("Hello World\n");
+
+    // terminate the thread using default attribute by passing NULL
+    pthread_exit(NULL);
 }
 
 int main()
 {
     printf("Running thread...\n");
     pthread_t thread;
+    // NULL indicates default thread attributes
     pthread_create(&thread, NULL, threadFunction, NULL);
     printf("Parent Completed\n");
 
