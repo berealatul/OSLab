@@ -10,6 +10,7 @@ Use pthread_exit() in your program (if possible) for terminating the thread.
 // since c does not have facility to accept generic data type so casting using (void*) to resolve it
 void *threadFunction()
 {
+    printf("    Thread: \n\t");
     printf("Hello World\n");
 
     // terminate the thread using default attribute by passing NULL
@@ -18,7 +19,6 @@ void *threadFunction()
 
 int main()
 {
-    printf("Running thread...\n");
     pthread_t thread;
     // NULL indicates default thread attributes
     int status = pthread_create(&thread, NULL, threadFunction, NULL);
@@ -28,7 +28,11 @@ int main()
         return 1;
     }
 
-    printf("Main Program: thread created sucessfully");
+    printf("Main Program: thread created sucessfully\n");
+
+    // wait for thread to complete
+    pthread_join(thread, NULL);
+    printf("Main Program: thread finished esecution\n");
 
     return 0;
 }
