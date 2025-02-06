@@ -32,6 +32,7 @@ int main()
 
     // wait for thread to complete
     pthread_join(thread, NULL);
+
     printf("Main Program: thread finished esecution\n");
 
     return 0;
